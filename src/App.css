@@ -1,0 +1,201 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(to right, #F99D62, #F06B51);
+}
+
+/* Prevent default css on a */
+a, a:link, a:visited, a:focus, a:hover, a:active{
+  color: black;
+  text-decoration:none;
+  cursor: pointer;
+}
+
+.Header {
+  display: flex;
+  padding: 20px;
+  background: linear-gradient(to right, #F99D62, #F06B51);
+  color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Add relative positioning */
+}
+
+.Header .logo {
+  width: 120px;
+}
+
+.Header .nav {
+  display: flex;
+  gap: 20px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    transition: color 0.3s ease;
+  }
+}
+
+
+.Home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.Home .box {
+    padding: 40px;
+    margin: 20px;
+    border-radius: 15px;
+    background-color: #EAEAEA; /* Light gray */
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background-color: #fcd29c;
+      transform: scale(1.1);
+    }
+}
+
+
+.Decks {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.Decks .deck-box {
+  width: 90%;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #fcd29c;
+    transform: scale(1.02);
+    cursor: pointer;
+  }
+}
+
+.Decks .create-deck-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 30px;
+  border: none;
+  border-radius: 8px;
+  background-color: #F99D62;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #F06B51;
+  }
+}
+
+.DeckEdit {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  padding: 40px; /* Increased padding */
+  border-radius: 15px; /* Increased border radius */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 60px; /* Increased gap */
+}
+
+.DeckEdit h2 {
+  font-size: 28px; /* Increased font size */
+  margin-bottom: 30px; /* Increased margin bottom */
+}
+
+.DeckEdit .form-group {
+  margin-bottom: 20px; /* Increased margin bottom */
+}
+
+.DeckEdit label {
+  display: block;
+  margin-bottom: 10px; /* Increased margin bottom */
+  font-weight: bold;
+}
+
+.DeckEdit input {
+  width: 100%;
+  padding: 15px; /* Increased padding */
+  border: 2px solid #ccc; /* Increased border size */
+  border-radius: 8px; /* Increased border radius */
+  margin-top: 10px; /* Increased margin top */
+}
+
+.DeckEdit .button-group {
+  display: flex;
+  gap: 40px; /* Increased gap */
+  justify-content: space-between;
+}
+
+.DeckEdit button {
+  padding: 15px 20px; /* Increased padding */
+  border: none;
+  border-radius: 8px; /* Increased border radius */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 18px; /* Increased font size */
+}
+
+.DeckEdit button.cancel {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.DeckEdit button.save {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+/* Add this CSS to style the DeckView component */
+
+.DeckView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.DeckView .card-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+}
+
+.DeckView p {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.DeckView .vertical-line {
+  height: 100%;
+  border-left: 2px solid #ccc;
+}
