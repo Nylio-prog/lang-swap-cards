@@ -1,20 +1,29 @@
+html {
+  height: 100%;
+}
+
 body {
-  font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(to right, #F99D62, #F06B51);
+  font-family: "Montserrat", sans-serif;
+  background: #5f6f52;
 }
 
 /* Prevent default css on a */
-a, a:link, a:visited, a:focus, a:hover, a:active{
-  color: black;
-  text-decoration:none;
+a,
+a:link,
+a:visited,
+a:focus,
+a:hover,
+a:active {
+  color: #fefae0;
+  text-decoration: none;
   cursor: pointer;
 }
 
 .Header {
   display: flex;
   padding: 20px;
-  background: linear-gradient(to right, #F99D62, #F06B51);
-  color: #fff;
+  background: linear-gradient(to right, #f99d62, #f06b51);
+  color: #fefae0;
   justify-content: space-between;
   align-items: center;
   position: relative; /* Add relative positioning */
@@ -34,12 +43,11 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
 
   a {
     text-decoration: none;
-    color: #fff;
+    color: #fefae0;
     font-size: 24px;
     transition: color 0.3s ease;
   }
 }
-
 
 .Home {
   display: flex;
@@ -48,21 +56,20 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
   height: 100vh;
 }
 .Home .box {
-    padding: 40px;
-    margin: 20px;
-    border-radius: 15px;
-    background-color: #EAEAEA; /* Light gray */
-    color: #333;
-    text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 40px;
+  margin: 20px;
+  border-radius: 15px;
+  background-color: #b99470;
+  color: #fefae0;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
-    &:hover {
-      background-color: #fcd29c;
-      transform: scale(1.1);
-    }
+  &:hover {
+    background-color: #b99470;
+    transform: scale(1.1);
+  }
 }
-
 
 .Decks {
   display: flex;
@@ -78,7 +85,7 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
   width: 90%;
   padding: 20px;
   border-radius: 15px;
-  background-color: #fff;
+  background-color: #fefae0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.3s ease;
   text-align: center;
@@ -99,60 +106,88 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
   padding: 30px;
   border: none;
   border-radius: 8px;
-  background-color: #F99D62;
-  color: #fff;
+  background-color: #b99470;
+  color: #fefae0;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #F06B51;
+    background-color: #9f7e5a;
   }
 }
 
-.DeckEdit {
+.DeckEdit,
+.CardEdit {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  width: 50%;
   margin: auto;
   padding: 40px; /* Increased padding */
-  border-radius: 15px; /* Increased border radius */
+  border-radius: 30px; /* Increased border radius */
   align-items: center;
   justify-content: center;
-  height: 100vh;
   gap: 60px; /* Increased gap */
+  background-color: #b99470;
+
+  /* Center the box in the middle of the screen */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Set the height to 75% of the viewport height */
+  height: 75vh;
 }
 
-.DeckEdit h2 {
+.DeckEdit,
+.CardEdit h2 {
   font-size: 28px; /* Increased font size */
   margin-bottom: 30px; /* Increased margin bottom */
+  color: #fefae0;
 }
 
-.DeckEdit .form-group {
+.DeckEdit,
+.CardEdit .form-group {
   margin-bottom: 20px; /* Increased margin bottom */
+  width: 50%;
 }
 
-.DeckEdit label {
+.DeckEdit,
+.CardEdit label {
   display: block;
-  margin-bottom: 10px; /* Increased margin bottom */
+  margin-top: 25px; /* Increased margin bottom */
   font-weight: bold;
+  color: #fefae0;
 }
 
-.DeckEdit input {
+.DeckEdit,
+.CardEdit input {
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
   width: 100%;
-  padding: 15px; /* Increased padding */
-  border: 2px solid #ccc; /* Increased border size */
-  border-radius: 8px; /* Increased border radius */
-  margin-top: 10px; /* Increased margin top */
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  font-family: "Montserrat", sans-serif;
 }
 
-.DeckEdit .button-group {
+.DeckEdit,
+.CardEdit input:focus {
+  outline: none;
+  border-color: #b99470;
+  box-shadow: 0 0 8px rgba(185, 148, 112, 0.5);
+}
+
+.DeckEdit,
+.CardEdit .button-group {
   display: flex;
   gap: 40px; /* Increased gap */
   justify-content: space-between;
 }
 
-.DeckEdit button {
+.DeckEdit,
+.CardEdit button {
   padding: 15px 20px; /* Increased padding */
   border: none;
   border-radius: 8px; /* Increased border radius */
@@ -161,41 +196,93 @@ a, a:link, a:visited, a:focus, a:hover, a:active{
   font-size: 18px; /* Increased font size */
 }
 
-.DeckEdit button.cancel {
+.DeckEdit,
+.CardEdit button.cancel {
   background-color: #e74c3c;
-  color: #fff;
+  color: #fefae0;
 }
 
-.DeckEdit button.save {
+.DeckEdit,
+.CardEdit button.save {
   background-color: #2ecc71;
-  color: #fff;
-}
-
-/* Add this CSS to style the DeckView component */
-
-.DeckView {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-radius: 10px;
+  color: #fefae0;
 }
 
 .DeckView .card-box {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.DeckView h2 {
+  color: #fefae0;
+  text-align: center;
+}
+
+.CardTable .action-button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-right: 10px;
+}
+
+.CardTable .action-button {
+  background-color: #b99470;
+  color: #fefae0;
+  padding: 8px 16px;
+  border: none;
   border-radius: 8px;
-  width: 90%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.DeckView p {
-  margin: 0;
-  padding: 0 10px;
+.CardTable .action-button:hover {
+  background-color: #9f7e59;
 }
 
-.DeckView .vertical-line {
-  height: 100%;
-  border-left: 2px solid #ccc;
+.CardTable input {
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+.CardTable input:focus {
+  outline: none;
+  border-color: #b99470;
+  box-shadow: 0 0 8px rgba(185, 148, 112, 0.5);
+}
+
+.DeckView .create-card-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 30px;
+  border: none;
+  border-radius: 8px;
+  background-color: #b99470;
+  color: #fefae0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #9f7e5a;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .DeckEdit,
+  .CardEdit .form-group {
+    width: 90%;
+  }
+
+  .CardTable .action-button-container {
+    gap: 5px;
+    margin-right: 0px;
+  }
 }

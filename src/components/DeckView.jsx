@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebaseConfig"; // Import your Firebase configuration
-import { collection, getDocs } from "firebase/firestore";
-import { useLocation } from "react-router-dom";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
+import CardTable from "./CardTable";
 
 const DeckView = () => {
   const location = useLocation();
-  const deck = location.state && location.state.deck;
+  const { deckId } = useParams();
+  const navigate = useNavigate();
+  const [deck, setDeck] = useState(location.state && location.state.deck);
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -30,23 +37,51 @@ const DeckView = () => {
     fetchCards();
   }, [deck]);
 
-  if (!deck) {
-    // Handle the case where the deck is not available
-    return <div>Deck not found</div>;
+  useEffect(() => {
+    const fetchDeck = async () => {
+      try {
+        // Get the reference to the 'decks' collection
+        const deckDocRef = doc(db, "decks", deckId);
+
+        // Execute the query to get the deck with the specified deckId
+        const deckSnapshot = await getDoc(deckDocRef);
+
+        // Check if the deck exists
+        if (deckSnapshot.exists()) {
+          // Update the state with the fetched deck data
+          setDeck({ id: deckSnapshot.id, ...deckSnapshot.data() });
+        } else {
+          console.error("Deck not found");
+          // Handle the case where the deck with the specified deckId does not exist
+        }
+      } catch (error) {
+        console.error("Error fetching deck:", error);
+      } finally {
+        // Set loading to false when fetchDeck is completed, regardless of success or failure
+        setIsLoading(false);
+      }
+    };
+
+    // Call fetchDeck when the component mounts or 'deckId' changes
+    fetchDeck();
+  }, [deckId]);
+
+  if (isLoading) {
+    // Render a loading indicator while fetching the deck
+    return <p>Loading...</p>;
   }
+
+  const handleCreateCard = async () => {
+    navigate("/card/edit", { state: { deckId } });
+  };
 
   return (
     <div className="DeckView">
-      {cards.map((card) => (
-        <div key={card.id} className="card-box">
-          <p><strong>Card ID:</strong> {card.id}</p>
-          <div className="vertical-line"></div>
-          <p><strong>Front:</strong> {card.front}</p>
-          <div className="vertical-line"></div>
-          <p><strong>Back:</strong> {card.back}</p>
-          {/* Add more paragraphs for additional card details */}
-        </div>
-      ))}
+      <h2>Deck : {deck.title}</h2>
+      <CardTable cards={cards} deckId={deck.id} />
+      <button className="create-card-button" onClick={handleCreateCard}>
+        <FontAwesomeIcon icon={faPlus} size="3x" />
+      </button>
     </div>
   );
 };

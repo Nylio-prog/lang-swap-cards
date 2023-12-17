@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
@@ -15,7 +15,7 @@ const DeckEdit = () => {
         cards_id: cardsId,
       };
 
-      const decksCollection = collection(db, 'decks');
+      const decksCollection = collection(db, "decks");
       const newDeckRef = await addDoc(decksCollection, newDeck);
 
       console.log("Deck created:", newDeckRef.id);
@@ -35,7 +35,7 @@ const DeckEdit = () => {
     <div className="DeckEdit">
       <h2>Creating New Deck</h2>
       <div className="form-group">
-        <label>Title:</label>
+        <label>Title :</label>
         <input
           type="text"
           value={title}
@@ -51,8 +51,12 @@ const DeckEdit = () => {
         />
       </div>
       <div className="button-group">
-        <button className="cancel" onClick={handleCancel}>Cancel</button>
-        <button className="save" onClick={handleCreateDeck}>Save</button>
+        <button className="cancel" onClick={handleCancel}>
+          Cancel
+        </button>
+        <button className="save" onClick={handleCreateDeck}>
+          Save
+        </button>
       </div>
     </div>
   );
