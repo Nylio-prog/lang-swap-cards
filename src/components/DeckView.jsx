@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import CardTable from "./CardTable";
+import Header from "./Header";
 
 const DeckView = () => {
   const location = useLocation();
@@ -76,12 +77,15 @@ const DeckView = () => {
   };
 
   return (
-    <div className="DeckView">
-      <h2>Deck : {deck.title}</h2>
-      <CardTable cards={cards} deckId={deck.id} />
-      <button className="create-card-button" onClick={handleCreateCard}>
-        <FontAwesomeIcon icon={faPlus} size="3x" />
-      </button>
+    <div>
+      <Header />
+      <div className="DeckView">
+        <h2>Deck : {deck.title}</h2>
+        <CardTable cards={cards} deckId={deck.id} />
+        <button className="create-card-button" onClick={handleCreateCard}>
+          <FontAwesomeIcon icon={faPlus} size="3x" />
+        </button>
+      </div>
     </div>
   );
 };

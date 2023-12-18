@@ -1,12 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import Select from "react-select";
+
+const customStyles = {
+  input: (provided) => ({
+    ...provided,
+    "&::after": {
+      // Your custom styles for ::after
+      paddingTop: "10px",
+    },
+  }),
+};
 
 const DeckEdit = () => {
   const [title, setTitle] = useState("");
   const [cardsId, setCardsId] = useState([]);
+  const [allCards, setAllCards] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch all cards from the database
+    const fetchAllCards = async () => {
+      const cardsCollection = collection(db, "cards");
+      const cardsSnapshot = await getDocs(cardsCollection);
+      const cards = cardsSnapshot.docs.map((doc) => ({
+        label: `${doc.data().front} - ${doc.data().back}`,
+        value: doc.id,
+      }));
+      setAllCards(cards);
+    };
+
+    fetchAllCards();
+  }, []);
 
   const handleCreateDeck = async () => {
     try {
@@ -43,11 +70,15 @@ const DeckEdit = () => {
         />
       </div>
       <div className="form-group">
-        <label>Cards ID (comma-separated):</label>
-        <input
-          type="text"
-          value={cardsId.join(",")}
-          onChange={(e) => setCardsId(e.target.value.split(","))}
+        <label>Cards:</label>
+        <Select
+          isMulti
+          options={allCards}
+          value={allCards.filter((card) => cardsId.includes(card.value))}
+          onChange={(selectedOptions) =>
+            setCardsId(selectedOptions.map((option) => option.value))
+          }
+          styles={customStyles}
         />
       </div>
       <div className="button-group">

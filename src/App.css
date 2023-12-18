@@ -22,11 +22,11 @@ a:active {
 .Header {
   display: flex;
   padding: 20px;
-  background: linear-gradient(to right, #f99d62, #f06b51);
+  background: #b99470;
   color: #fefae0;
   justify-content: space-between;
   align-items: center;
-  position: relative; /* Add relative positioning */
+  position: relative;
 }
 
 .Header .logo {
@@ -40,6 +40,7 @@ a:active {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  gap: 90px;
 
   a {
     text-decoration: none;
@@ -140,20 +141,20 @@ a:active {
   height: 75vh;
 }
 
-.DeckEdit,
+.DeckEdit h2,
 .CardEdit h2 {
   font-size: 28px; /* Increased font size */
   margin-bottom: 30px; /* Increased margin bottom */
   color: #fefae0;
 }
 
-.DeckEdit,
+.DeckEdit .form-group,
 .CardEdit .form-group {
   margin-bottom: 20px; /* Increased margin bottom */
   width: 50%;
 }
 
-.DeckEdit,
+.DeckEdit label,
 .CardEdit label {
   display: block;
   margin-top: 25px; /* Increased margin bottom */
@@ -161,7 +162,7 @@ a:active {
   color: #fefae0;
 }
 
-.DeckEdit,
+.DeckEdit input,
 .CardEdit input {
   border: none;
   border-radius: 8px;
@@ -172,21 +173,21 @@ a:active {
   font-family: "Montserrat", sans-serif;
 }
 
-.DeckEdit,
+.DeckEdit input:focus,
 .CardEdit input:focus {
   outline: none;
   border-color: #b99470;
   box-shadow: 0 0 8px rgba(185, 148, 112, 0.5);
 }
 
-.DeckEdit,
+.DeckEdit .button-group,
 .CardEdit .button-group {
   display: flex;
   gap: 40px; /* Increased gap */
   justify-content: space-between;
 }
 
-.DeckEdit,
+.DeckEdit button,
 .CardEdit button {
   padding: 15px 20px; /* Increased padding */
   border: none;
@@ -196,13 +197,13 @@ a:active {
   font-size: 18px; /* Increased font size */
 }
 
-.DeckEdit,
+.DeckEdit button.cancel,
 .CardEdit button.cancel {
   background-color: #e74c3c;
   color: #fefae0;
 }
 
-.DeckEdit,
+.DeckEdit button.save,
 .CardEdit button.save {
   background-color: #2ecc71;
   color: #fefae0;
@@ -321,7 +322,7 @@ a:active {
 
 /* Styling for the front of the card */
 .PracticeDeck .card-front {
-  background-color: #a9b388;
+  background-color: #b99470;
   color: #fefae0;
 }
 
@@ -334,7 +335,7 @@ a:active {
 
 /* Styling for the card content with transition */
 .PracticeDeck .card-content {
-  transition: transform 0.3s; /* Adjust the duration as needed */
+  transition: transform 0.5s; /* Adjust the duration as needed */
 }
 
 /* Button styling */

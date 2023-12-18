@@ -3,6 +3,8 @@ import { db } from "../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 
+import Header from "./Header";
+
 const PracticeDeck = () => {
   const { deckId } = useParams();
   const navigate = useNavigate();
@@ -92,21 +94,24 @@ const PracticeDeck = () => {
   };
 
   return (
-    <div className="PracticeDeck">
-      {cards.length > 0 && (
-        <div
-          className={`card ${isFlipped ? "flipped" : ""}`}
-          onClick={handleCardClick}
-        >
-          <div className="card-content">
-            <div className="card-front">{cards[currentCardIndex].front}</div>
-            <div className="card-back">
-              {hasWaitedFlipTime ? cards[currentCardIndex].back : ""}
+    <div>
+      <Header />
+      <div className="PracticeDeck">
+        {cards.length > 0 && (
+          <div
+            className={`card ${isFlipped ? "flipped" : ""}`}
+            onClick={handleCardClick}
+          >
+            <div className="card-content">
+              <div className="card-front">{cards[currentCardIndex].front}</div>
+              <div className="card-back">
+                {hasWaitedFlipTime ? cards[currentCardIndex].back : ""}
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      <button onClick={handleNextCard}>Next Card</button>
+        )}
+        <button onClick={handleNextCard}>Next Card</button>
+      </div>
     </div>
   );
 };

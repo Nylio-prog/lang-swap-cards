@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,7 +11,6 @@ const Header = () => {
         <Link to="/practice">Practice</Link>
         <Link to="/friends">Friends</Link>
       </div>
-
     </div>
   );
 };

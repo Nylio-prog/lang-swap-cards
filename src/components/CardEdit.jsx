@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   doc,
@@ -6,8 +6,19 @@ import {
   collection,
   addDoc,
   arrayUnion,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import Select from "react-select";
+
+const customStyles = {
+  input: (provided) => ({
+    ...provided,
+    "&::after": {
+      paddingTop: "10px",
+    },
+  }),
+};
 
 const CardEdit = () => {
   const location = useLocation();
@@ -16,7 +27,23 @@ const CardEdit = () => {
   const [front, setFront] = useState(card?.front ?? "");
   const [back, setBack] = useState(card?.back ?? "");
   const [decksId, setDecksId] = useState([]);
+  const [allDecks, setAllDecks] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch all decks from the database
+    const fetchAllDecks = async () => {
+      const decksCollection = collection(db, "decks");
+      const decksSnapshot = await getDocs(decksCollection);
+      const decks = decksSnapshot.docs.map((doc) => ({
+        label: doc.data().title,
+        value: doc.id,
+      }));
+      setAllDecks(decks);
+    };
+
+    fetchAllDecks();
+  }, []);
 
   const handleSaveCard = async () => {
     try {
@@ -25,15 +52,16 @@ const CardEdit = () => {
         const newCardRef = await addDoc(collection(db, "cards"), {
           front: front,
           back: back,
-          decks_id: [deckId],
+          decks_id: decksId,
         });
 
-        const deckDocRef = doc(db, "decks", deckId);
-
-        // Update the deck's cards_id array with the new card ID
-        await updateDoc(deckDocRef, {
-          cards_id: arrayUnion(newCardRef.id),
-        });
+        // Update the selected decks' cards_id arrays with the new card ID
+        for (const selectedDeckId of decksId) {
+          const deckDocRef = doc(db, "decks", selectedDeckId);
+          await updateDoc(deckDocRef, {
+            cards_id: arrayUnion(newCardRef.id),
+          });
+        }
       } else {
         // It's an existing card, update its data
         const cardDocRef = doc(db, "cards", card.id);
@@ -74,11 +102,15 @@ const CardEdit = () => {
         />
       </div>
       <div className="form-group">
-        <label>Decks ID (comma-separated):</label>
-        <input
-          type="text"
-          value={decksId.join(",")}
-          onChange={(e) => setDecksId(e.target.value.split(","))}
+        <label>Decks:</label>
+        <Select
+          isMulti
+          options={allDecks}
+          value={allDecks.filter((deck) => decksId.includes(deck.value))}
+          onChange={(selectedOptions) =>
+            setDecksId(selectedOptions.map((option) => option.value))
+          }
+          styles={customStyles}
         />
       </div>
       <div className="button-group">
