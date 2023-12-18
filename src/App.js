@@ -10,6 +10,8 @@ import Decks from "./components/Decks";
 import DeckEdit from "./components/DeckEdit";
 import DeckView from "./components/DeckView";
 import CardEdit from "./components/CardEdit";
+import Practice from "./components/Practice";
+import PracticeDeck from "./components/PracticeDeck";
 
 function App() {
   const navigate = useNavigate();
@@ -31,6 +33,8 @@ function App() {
       <Route path="decks/:deckId" element={<DeckView />} />
       <Route path="decks/new" element={<DeckEdit />} />
       <Route path="card/edit" element={<CardEdit />} />
+      <Route path="practice" element={<Practice />} />
+      <Route path="practice/:deckId" element={<PracticeDeck />} />
       <Route path="/" element={<Home />} />
     </Routes>
   );

@@ -275,6 +275,85 @@ a:active {
   }
 }
 
+/* .PracticeDeck container */
+.PracticeDeck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* .card container */
+.PracticeDeck .card {
+  width: 200px;
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+/* .card content */
+.PracticeDeck .card-content {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+/* .flipped class for flipping effect */
+.PracticeDeck .card.flipped .card-content {
+  transform: rotateY(180deg);
+}
+
+/* .card sides */
+.PracticeDeck .card-front,
+.PracticeDeck .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  will-change: transform;
+}
+
+/* Styling for the front of the card */
+.PracticeDeck .card-front {
+  background-color: #a9b388;
+  color: #fefae0;
+}
+
+/* Styling for the back of the card */
+.PracticeDeck .card-back {
+  background-color: #b99470;
+  color: #fefae0;
+  transform: rotateY(180deg);
+}
+
+/* Styling for the card content with transition */
+.PracticeDeck .card-content {
+  transition: transform 0.3s; /* Adjust the duration as needed */
+}
+
+/* Button styling */
+.PracticeDeck button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #b99470;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.PracticeDeck button:hover {
+  background-color: #9f7e5a;
+}
+
 @media only screen and (max-width: 600px) {
   .DeckEdit,
   .CardEdit .form-group {
