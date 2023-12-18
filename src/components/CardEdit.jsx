@@ -26,7 +26,7 @@ const CardEdit = () => {
   const deckId = location.state && location.state.deckId;
   const [front, setFront] = useState(card?.front ?? "");
   const [back, setBack] = useState(card?.back ?? "");
-  const [decksId, setDecksId] = useState([]);
+  const [decksId, setDecksId] = useState([deckId]);
   const [allDecks, setAllDecks] = useState([]);
   const navigate = useNavigate();
 

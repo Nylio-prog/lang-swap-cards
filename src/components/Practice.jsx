@@ -22,10 +22,7 @@ const Practice = () => {
           // Get the reference to the 'decks' collection
           const decksCollection = collection(db, "decks");
 
-          const q = query(
-            decksCollection,
-            where("users_id", "array-contains", user.uid)
-          );
+          const q = query(decksCollection, where("user_id", "==", user.uid));
 
           // Execute the query to get all decks
           const decksSnapshot = await getDocs(q);

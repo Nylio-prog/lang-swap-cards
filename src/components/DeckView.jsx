@@ -80,7 +80,7 @@ const DeckView = () => {
     <div>
       <Header />
       <div className="DeckView">
-        <h2>Deck : {deck.title}</h2>
+        <h2>{deck.title}</h2>
         <CardTable cards={cards} deckId={deck.id} />
         <button className="create-card-button" onClick={handleCreateCard}>
           <FontAwesomeIcon icon={faPlus} size="3x" />

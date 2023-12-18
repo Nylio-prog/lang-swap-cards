@@ -157,7 +157,8 @@ a:active {
 .DeckEdit label,
 .CardEdit label {
   display: block;
-  margin-top: 25px; /* Increased margin bottom */
+  margin-top: 25px;
+  margin-bottom: 10px;
   font-weight: bold;
   color: #fefae0;
 }

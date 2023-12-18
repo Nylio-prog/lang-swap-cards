@@ -98,6 +98,15 @@ const CardTable = ({ cards, deckId }) => {
         color: "#FEFAE0",
       },
     },
+    noData: {
+      style: {
+        fontSize: "20px",
+        backgroundColor: "#B99470",
+        color: "#FEFAE0",
+        textAlign: "center",
+        padding: "30px",
+      },
+    },
   };
 
   return (
@@ -105,6 +114,7 @@ const CardTable = ({ cards, deckId }) => {
       <DataTable
         columns={columns}
         data={cardsData}
+        noDataComponent="No cards in this deck"
         customStyles={customStyles}
       />
     </div>

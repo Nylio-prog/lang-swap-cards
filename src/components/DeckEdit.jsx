@@ -36,20 +36,29 @@ const DeckEdit = () => {
   }, []);
 
   const handleCreateDeck = async () => {
-    try {
-      const newDeck = {
-        title: title,
-        cards_id: cardsId,
-      };
+    const storedUser = localStorage.getItem("user");
+    const user =
+      storedUser !== "undefined" ? JSON.parse(storedUser) : undefined;
 
-      const decksCollection = collection(db, "decks");
-      const newDeckRef = await addDoc(decksCollection, newDeck);
+    if (!user) {
+      navigate("/login");
+    } else {
+      try {
+        const newDeck = {
+          title: title,
+          cards_id: cardsId,
+          user_id: user.uid,
+        };
 
-      console.log("Deck created:", newDeckRef.id);
-      // Navigate back to the home page after creating a deck
-      navigate("/");
-    } catch (error) {
-      console.error("Error creating deck:", error);
+        const decksCollection = collection(db, "decks");
+        const newDeckRef = await addDoc(decksCollection, newDeck);
+
+        console.log("Deck created:", newDeckRef.id);
+        // Navigate back to the home page after creating a deck
+        navigate("/");
+      } catch (error) {
+        console.error("Error creating deck:", error);
+      }
     }
   };
 
